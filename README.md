@@ -1,6 +1,6 @@
 <h1>ExpNo 3 : Implement Breadth First Search Traversal of a Graph</h1> 
-<h3>Name: Saravanan N</h3>
-<h3>Register Number/Staff Id: TSML006</h3>
+<h3>Name: LINGESWARAN K</h3>
+<h3>Register Number: 212222110022</h3>
 <H3>Aim:</H3>
 <p>To Implement Breadth First Search Traversal of a Graph using Python 3.</p>
 <h3>Theory:</h3>
@@ -67,6 +67,47 @@ Now, Queue becomes empty, So, terminate these process of iteration.
 
 </ol>
 
+### Program 
+
+```py
+from collections import defaultdict, deque
+
+def bfs(graph, start):
+    visited = set()
+    queue = deque([start])
+    traversal_order = []
+
+    while queue:
+        node = queue.popleft()
+        if node not in visited:
+            traversal_order.append(node)
+            visited.add(node)
+            queue.extend(graph[node])
+
+    return traversal_order
+
+def main():
+    # Getting input from the user
+    num_nodes, num_edges = map(int, input("Enter the number of nodes and edges (separated by space): ").split())
+
+    edges = []
+    print("Enter the edges (format: <node1> <node2>): ")
+    for _ in range(num_edges):
+        edge = input().split()
+        edges.append((edge[0], edge[1]))
+
+    graph = defaultdict(list)
+    for edge in edges:
+        graph[edge[0]].append(edge[1])
+        graph[edge[1]].append(edge[0])  # Assuming an undirected graph
+
+    start_node = input("Enter the starting node: ")
+    traversal_order = bfs(graph, start_node)
+    print("BFS Traversal Order:", traversal_order)
+
+if __name__ == "__main__":
+    main()
+```
 <hr>
 <h3>Sample Input</h3>
 <hr>
